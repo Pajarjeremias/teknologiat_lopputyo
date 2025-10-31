@@ -17,7 +17,6 @@ Ensimäisellä image buildilla se meni läpi mutta kun yritin ajaa sitä tuli Ru
 
 
 ```dockerfile
-# syntax=docker/dockerfile:1
 # Base image to use, fewer included packages, because we need to keep image lighter for AI_Model and database
 FROM python:3.12-slim
 
