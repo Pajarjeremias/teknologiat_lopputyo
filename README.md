@@ -13,9 +13,10 @@ Tarkistin että requirements.py:ssä on yhdessä kaikki tarvittavat tiedot  lada
 Täytyi miettiä mitä kaikkea tarvitsen. Tärkeinpänä on python base image, jossa päädyin versioon 3.12 ja siitä slim, jotta olisi vähän riisutumpi versio, sillä tiesin että ai model tulee lisäämään imagen kokoa paljon. Alpine ei olisi käynyt sillä  Koko ajan oli polttava tunne että tulisi otettava enemmänkin pois ja löysin esimerkiksi ratkaisun, jossa linuksin päivittämisen ja asentamisen yhteydessä lisää lipun --no-install-recommends, tämä toimii niin että, jokaisessa paketissa on 3 erilaista riippuvuus pakettia: required, recommended ja suggested. Eli lipun tarkoitus on olla asentamatta recommended osiota, joka keventää Ubuntun blogin mukaan Docker imagea, jopa 60 % (lähde: https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). Kirjoitin Googleen Python dockerfile löysin docker best practices (https://docs.docker.com/build/building/best-practices/#run), jota hyödynsin ja otin sieltä mallia tarvittavista imagen rakennus tarvikkeista. 
 Ensimäisellä image buildilla se meni läpi mutta kun yritin ajaa sitä tuli RunTimeError: Form data requires "Python multi-part" to be installed. Eli täytyy lisätä requirements.txt tiedostoon python multipart ja kokeilla uudestaa buildia. Sain imagen toimimaan menemällä osoitteeseen: http://127.0.0.1:8080/docs
 
+<img width="685" height="427" alt="ohkeat_lopputyo" src="https://github.com/user-attachments/assets/ce59443c-9304-4faa-9a8f-71297a4cdfb6" />
 
 
-
+```dockerfile
 # syntax=docker/dockerfile:1
 # Base image to use, fewer included packages, because we need to keep image lighter for AI_Model and database
 FROM python:3.12-slim
